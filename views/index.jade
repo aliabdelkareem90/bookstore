@@ -1,0 +1,19 @@
+//- if logged in you can go to member area, else redirect to login page
+
+extends layout
+
+block content
+  .row.p-3
+    each book, i in books
+      .col.card(style='width: 18rem;').m-2.p-2
+        img.card-img-top(src='#{book.cover}', alt='...')
+        .card-body
+          h5.card-title #{book.title}
+          p.card-text
+            |#{book.desc}
+          a.btn.btn-success(href='#') Download
+      if i == 2
+        .w-100
+        
+      
+

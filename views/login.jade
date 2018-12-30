@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	br
+	h2.page-header Login
+	p Please Login below or register if you don't have an account:
+	form(method='post', action='/users/login')
+		.form-group
+			input.form-control(type="text", name="username" placeholder="Username").mb-2
+		.form-group
+			input.form-control(type="password", name="password" placeholder="password").mb-2
+		input.btn.btn-primary(type="submit", value="Login", name='submit')

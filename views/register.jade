@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	br
+	h2.page-header Register
+	p Please register using the form below or login if you have an account:
+	if errors
+		each error, i in errors
+			div.alert.alert-danger #{error.msg}
+	form(method='post', action='/users/register', enctype='multipart/form-data')
+		.form-group
+			input.form-control(type="text", name="name" placeholder="Your name").mb-2
+		.form-group
+			input.form-control(type="email", name="email" placeholder="Your email").mb-2
+		.form-group
+			input.form-control(type="text", name="username" placeholder="Username").mb-2
+		.form-group
+			input.form-control(type="password", name="password" placeholder="password").mb-2
+		.form-group
+			input.form-control(type="password", name="password2" placeholder="confirm pasword").mb-2
+		.form-group
+			input.form-control(type="file", name="profileimage").mb-2
+		input.btn.btn-primary(type="submit", value="Register", name='submit')
