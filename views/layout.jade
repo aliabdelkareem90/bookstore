@@ -21,9 +21,8 @@ html(lang='en')
               a.nav-link(href='/users/login').mr-3 Login 
         
         ul.nav.navbar-nav.navbar-right.mr-5
-          if !user
-            li.nav-item
-                a.nav-link(href='book') Manage
+          li.nav-item
+              a.nav-link(href='/addbook') Manage
           if user
             li.nav-item
               a.nav-link(href='users/logout') Logout

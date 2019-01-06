@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy
 var multer = require('multer')
 var upload = multer({dest: './uploads'})
 
@@ -30,21 +28,25 @@ router.get('/', ensureAuthenticated, function(req, res, next) {
 });
 
 router.get('/book', (req, res, next) => {
-  res.render('book')
+  res.render('index')
 })
 
-router.post('/book', (req, res, next) => {
+router.get('/addbook', (req, res, next) => {
+  res.render('addbook')
+})
+
+router.post('/addbook', upload.single('cover'), (req, res, next) => {
   var title =req.body.title;
   var desc =req.body.desc;
   var author =req.body.author;
-  var cover =req.body.cover;
 
   if(req.file) {
-    console.log('File uploaded...')
-    var profileimage = req.file.filename
+    console.log(req.file.filename)
+    var cover = req.file.filename + '.jpg'
+
   } else {
     console.log('No File uploaded...')
-    var profileimage = 'noimage.jpg'
+    var cover = 'noimage.jpg'
   }
   
   // form validation
@@ -56,8 +58,8 @@ router.post('/book', (req, res, next) => {
   var errors = req.validationErrors()
   
   if (errors) {
-    // console.log('errors')
-    res.render('book', {
+    console.log('errors')
+    res.render('addbook', {
       errors: errors
     })
   } else {
@@ -69,7 +71,7 @@ router.post('/book', (req, res, next) => {
       cover: cover
     })
 
-    Book.createBook(newBook, (err, Book) => {
+    Book.addBook(newBook, (err, Book) => {
       if (err) throw err
       console.log(Book); 
     })
@@ -77,7 +79,9 @@ router.post('/book', (req, res, next) => {
     // Successful registration message
     req.flash('success', 'Book was add successfully')
   }
-  
+
+  res.location('/addbook')
+  res.redirect('/addbook')
 });
 
 module.exports = router;

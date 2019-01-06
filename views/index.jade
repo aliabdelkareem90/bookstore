@@ -3,17 +3,15 @@
 extends layout
 
 block content
-  .row.p-3
-    each book, i in books
-      .col.card(style='width: 18rem;').m-2.p-2
-        img.card-img-top(src='#{book.cover}', alt='...')
+  
+  .row.m-auto
+    each book, i in books 
+      .col.md-4.card.mt-5.mr-3.p-2(style='width: 18rem;')
+        .card-img-top(src='#{book.cover}', alt='#{book.title}')
         .card-body
-          h5.card-title #{book.title}
-          p.card-text
-            |#{book.desc}
+          h4.card-title(style='color: green;') #{book.title}
+          p.card-text #{book.desc}
           a.btn.btn-success(href='#') Download
-      if i == 2
-        .w-100
-        
+      
       
 

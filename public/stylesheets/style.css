@@ -19,3 +19,18 @@ ul.error li {
     border-color: #ebccd1;
     list-style: none
 }
+
+div.col {
+    width: 32%;
+    min-height: 250px;
+}
+
+.card-body {
+    position: relative;
+}
+
+.btn.btn-success {
+    position: absolute;
+    top: 80%;
+    left: 27%;
+}
